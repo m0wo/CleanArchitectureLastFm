@@ -9,13 +9,11 @@ public class ListingModule {
 
     @Provides
     ArtistsListingInteractor provideArtistListingInteractor(LastFmWebService lastFmWebService) {
-        return null;
-        //return new ArtistsListingInteractorImpl(lastFmWebService);
+        return new ArtistsListingInteractorImpl(lastFmWebService);
     }
 
     @Provides
     ArtistsListingPresenter provideArtistListingPresenter(ArtistsListingInteractor interactor) {
-        return null;
-        //return new ArtistsListingPresenterImpl(interactor);
+        return new ArtistsListingPresenterImpl(interactor);
     }
 }

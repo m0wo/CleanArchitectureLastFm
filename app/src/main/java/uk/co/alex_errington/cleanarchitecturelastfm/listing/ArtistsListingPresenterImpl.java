@@ -1,4 +1,4 @@
-package uk.co.alex_errington.cleanarchitecturelastfm.listing.impl;
+package uk.co.alex_errington.cleanarchitecturelastfm.listing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +12,14 @@ import uk.co.alex_errington.cleanarchitecturelastfm.listing.ArtistsListingPresen
 import uk.co.alex_errington.cleanarchitecturelastfm.listing.ArtistsListingView;
 import uk.co.alex_errington.cleanarchitecturelastfm.util.RxUtils;
 
-public class ArtistsListingPresenterImpl implements ArtistsListingPresenter {
+class ArtistsListingPresenterImpl implements ArtistsListingPresenter {
     private ArtistsListingView view;
     private ArtistsListingInteractor artistsInteractor;
     private Disposable fetchSubscription;
     private int currentPage = 1;
     private List<Artist> loadedArtists = new ArrayList<>();
 
-    ArtistsListingPresenterImpl(ArtistsListingInteractor interactor) {
+    public ArtistsListingPresenterImpl(ArtistsListingInteractor interactor) {
         artistsInteractor = interactor;
     }
 
@@ -44,12 +44,17 @@ public class ArtistsListingPresenterImpl implements ArtistsListingPresenter {
 
     @Override
     public void firstPage() {
-
+        currentPage = 1;
+        loadedArtists.clear();
+        displayArtists();
     }
 
     @Override
     public void nextPage() {
-
+        if (artistsInteractor.isPaginationSupported()) {
+            currentPage++;
+            displayArtists();
+        }
     }
 
     private void showLoading() {

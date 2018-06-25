@@ -51,15 +51,15 @@ public class ArtistsListingFragment extends Fragment implements ArtistsListingVi
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         ((BaseApplication) getActivity().getApplication())
                 .createListingComponent().inject(this);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_artists, container, false);
         unbinder = ButterKnife.bind(this, rootView);
         initLayoutReferences();
@@ -76,7 +76,7 @@ public class ArtistsListingFragment extends Fragment implements ArtistsListingVi
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         artistsPresenter.setView(this);
         if(savedInstanceState != null) {
@@ -101,7 +101,7 @@ public class ArtistsListingFragment extends Fragment implements ArtistsListingVi
 
         artistsListing.setLayoutManager(layoutManager);
         adapter = new ArtistsListingAdapter(artists, this);
-        callback.onArtistsLoaded(artists.get(0));
+        artistsListing.setAdapter(adapter);
     }
 
     @Override

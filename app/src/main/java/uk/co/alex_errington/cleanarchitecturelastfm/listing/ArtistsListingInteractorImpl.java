@@ -1,4 +1,4 @@
-package uk.co.alex_errington.cleanarchitecturelastfm.listing.impl;
+package uk.co.alex_errington.cleanarchitecturelastfm.listing;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ import uk.co.alex_errington.cleanarchitecturelastfm.ArtistsWrapper;
 import uk.co.alex_errington.cleanarchitecturelastfm.listing.ArtistsListingInteractor;
 import uk.co.alex_errington.cleanarchitecturelastfm.network.LastFmWebService;
 
-public class ArtistsListingInteractorImpl implements ArtistsListingInteractor {
+class ArtistsListingInteractorImpl implements ArtistsListingInteractor {
 
     private LastFmWebService lastFmWebService;
 
-    ArtistsListingInteractorImpl(LastFmWebService lastFmWebService) {
+    public ArtistsListingInteractorImpl(LastFmWebService lastFmWebService) {
         this.lastFmWebService = lastFmWebService;
     }
 

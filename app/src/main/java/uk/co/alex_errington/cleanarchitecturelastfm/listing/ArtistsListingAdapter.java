@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
 import uk.co.alex_errington.cleanarchitecturelastfm.Artist;
 import uk.co.alex_errington.cleanarchitecturelastfm.R;
 
 public class ArtistsListingAdapter extends RecyclerView.Adapter<ArtistsListingAdapter.ViewHolder>{
+
     private List<Artist> artists;
     private Context context;
     private ArtistsListingView view;
@@ -23,11 +25,12 @@ public class ArtistsListingAdapter extends RecyclerView.Adapter<ArtistsListingAd
 
         public ViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         @Override
         public void onClick(View view) {
-
+            ArtistsListingAdapter.this.view.onArtistClicked(artist);
         }
     }
 
