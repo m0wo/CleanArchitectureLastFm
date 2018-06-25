@@ -5,7 +5,6 @@ import java.util.List;
 import io.reactivex.Observable;
 import uk.co.alex_errington.cleanarchitecturelastfm.Artist;
 import uk.co.alex_errington.cleanarchitecturelastfm.ArtistsWrapper;
-import uk.co.alex_errington.cleanarchitecturelastfm.listing.ArtistsListingInteractor;
 import uk.co.alex_errington.cleanarchitecturelastfm.network.LastFmWebService;
 
 class ArtistsListingInteractorImpl implements ArtistsListingInteractor {
@@ -23,6 +22,6 @@ class ArtistsListingInteractorImpl implements ArtistsListingInteractor {
 
     @Override
     public Observable<List<Artist>> fetchArtists(int page) {
-        return lastFmWebService.chartedArtists(page).map(ArtistsWrapper::getArtists);
+        return lastFmWebService.chartedArtists(page).map(ArtistsWrapper::getArtistList);
     }
 }

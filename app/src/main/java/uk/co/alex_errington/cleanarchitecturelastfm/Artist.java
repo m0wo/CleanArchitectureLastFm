@@ -18,7 +18,7 @@ public class Artist implements Parcelable {
     @Json(name = "url")
     private String url;
     @Json(name = "streamable")
-    private boolean streamable;
+    private String streamable;
 
     public Artist()
     {
@@ -32,7 +32,7 @@ public class Artist implements Parcelable {
         playCount = in.readLong();
         listeners = in.readLong();
         url = in.readString();
-        streamable = in.readByte() != 0;
+        streamable = in.readString();
     }
 
     public static final Creator<Artist> CREATOR = new Creator<Artist>() {
@@ -47,11 +47,11 @@ public class Artist implements Parcelable {
         }
     };
 
-    public boolean getStreamable() {
+    public String getStreamable() {
         return streamable;
     }
 
-    public void setStreamable(boolean streamable) {
+    public void setStreamable(String streamable) {
         this.streamable = streamable;
     }
 
@@ -89,6 +89,6 @@ public class Artist implements Parcelable {
         parcel.writeString(mbid);
         parcel.writeLong(listeners);
         parcel.writeLong(playCount);
-        parcel.writeByte((byte) (streamable ? 1 : 0));
+        parcel.writeString(streamable);
     }
 }
